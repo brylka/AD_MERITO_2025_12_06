@@ -65,7 +65,10 @@ plt.ylabel("Prawdziwa cyfra")
 plt.colorbar()
 plt.xticks(range(10))
 plt.yticks(range(10))
-
+for i in range(cm.shape[0]):
+    for j in range(cm.shape[1]):
+        plt.text(j,i,cm[i,j], ha="center", va="center",
+                 color="white" if cm[i,j] > cm.max()/2 else "black")
 
 plt.tight_layout()
 plt.show()
