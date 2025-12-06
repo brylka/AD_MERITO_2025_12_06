@@ -27,4 +27,10 @@ grid_search = GridSearchCV(
     verbose=1
 )
 
+grid_search.fit(X_train, y_train)
 
+print("Wyniki GridSearchCV")
+print(f"Najlepsze parametry:")
+for param, value in grid_search.best_params_.items():
+    print(f"Parametr: {param} - wartość: {value}")
+print(f"Największa dokładność CV: {grid_search.best_score_:.4f}")
