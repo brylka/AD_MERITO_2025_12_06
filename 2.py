@@ -2,6 +2,9 @@ from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
+import pandas as pd
+import matplotlib.pyplot as plt
+
 
 iris = load_iris()
 X, y = iris.data, iris.target
@@ -50,3 +53,18 @@ print(f"Las:    {(rf_train - rf_test):.4f}")
 print(f"Stabilność (std):")
 print(f"Drzewo: {tree_cv.std():.4f}")
 print(f"Las:    {rf_cv.std():.4f}")
+
+feature_importance = pd.DataFrame({
+    'cecha': iris.feature_names,
+    'ważność': random_forest.feature_importances_
+}).sort_values('ważność', ascending=False)
+
+print(f"Ważność cech:")
+print(feature_importance.to_string(index=False))
+
+plt.figure(figsize=(10,6))
+plt.barh(feature_importance['cecha'], feature_importance['ważność'], color='green')
+plt.xlabel('Ważność')
+plt.title('Random Forest - Ważność cech (Irysy)')
+plt.gca().invert_yaxis()
+plt.show()
