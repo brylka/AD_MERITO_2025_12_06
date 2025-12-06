@@ -1,5 +1,6 @@
 from sklearn.datasets import load_digits
-from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split, GridSearchCV
 
 digits = load_digits()
 X, y = digits.data, digits.target
@@ -15,5 +16,15 @@ param_grid = {
     'max_features': ['sqrt', 'log2']
 }
 
+rf = RandomForestClassifier(random_state=42, n_jobs=-1)
+
+grid_search = GridSearchCV(
+    estimator=rf,
+    param_grid=param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1,
+    verbose=1
+)
 
 
