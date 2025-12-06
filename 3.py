@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 
@@ -34,3 +35,18 @@ print(f"Dokładność treningowa: {tree.score(X_train, y_train):.4f}")
 print(f"Dokładność testowa:    {tree.score(X_test, y_test):.4f}")
 print(f"CV średnia:            {tree_cv.mean():.4f} (+/- {tree_cv.std():.4f})")
 
+rf = RandomForestClassifier(
+    n_estimators=100,
+    max_features='sqrt',
+    oob_score=True,
+    random_state=42,
+    n_jobs=-1
+)
+rf.fit(X_train, y_train)
+rf_cv = cross_val_score(rf, X, y, cv=10)
+
+print("Ranfom Forest (100 drzew):")
+print(f"Dokładność treningowa: {rf.score(X_train, y_train):.4f}")
+print(f"Dokładność testowa:    {rf.score(X_test, y_test):.4f}")
+print(f"CV średnia:            {rf_cv.mean():.4f} (+/- {tree_cv.std():.4f})")
+print(f"OOB score:             {rf.oob_score_:.4f}")
