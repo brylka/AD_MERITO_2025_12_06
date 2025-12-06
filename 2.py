@@ -1,3 +1,4 @@
+import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
@@ -87,3 +88,23 @@ for n_trees in n_trees_range:
     test_scores.append(rf.score(X_test, y_test))
     oob_scores.append(rf.oob_score_)
 
+plt.figure(figsize=(12,5))
+
+plt.subplot(1,2,1)
+plt.plot(n_trees_range, train_scores, 'b-o', label='Treningowa')
+plt.plot(n_trees_range, test_scores, 'r-s', label='Testowa')
+plt.plot(n_trees_range, oob_scores, 'g-^', label='OOB')
+plt.xlabel("Liczba drzew")
+plt.ylabel('Dokładność')
+plt.title('Dokładność vs liczba drzew')
+plt.legend()
+plt.grid(True)
+
+plt.subplot(1,2,2)
+plt.plot(n_trees_range, np.array(train_scores) - np.array(test_scores), 'red', marker='o')
+plt.xlabel('Liczba drzew')
+plt.ylabel('Różnica (train - test)')
+plt.title('Overfittin vs liczba drzew')
+plt.grid(True)
+
+plt.show()
