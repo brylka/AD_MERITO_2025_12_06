@@ -72,3 +72,13 @@ for i in range(cm.shape[0]):
 
 plt.tight_layout()
 plt.show()
+
+
+plt.figure(figsize=(8,6))
+plt.imshow(rf.feature_importances_.reshape(8,8), cmap="hot")
+plt.colorbar()
+plt.title('Ważność pikseli dla rozpoznawania cyfr')
+plt.xlabel('Pozycja x')
+plt.ylabel('Pozycja y')
+plt.tight_layout()
+plt.show()
