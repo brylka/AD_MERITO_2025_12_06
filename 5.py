@@ -1,5 +1,6 @@
 from sklearn.datasets import load_digits
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 
 digits = load_digits()
@@ -13,3 +14,10 @@ models = {
     'RF (100 drzew)': RandomForestClassifier(n_estimators=100, random_state=42),
     'RF (200 drzew)': RandomForestClassifier(n_estimators=200, random_state=42)
 }
+
+results = {}
+print("Obliczam cross-validation dla każdego modelu...")
+for name, model in models.items():
+    cv_scores = cross_val_score(model, X, y, cv=10)
+    results[name] = cv_scores
+    print(f"{name}: {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
