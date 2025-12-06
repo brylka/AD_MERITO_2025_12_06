@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from sklearn.datasets import load_digits
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
@@ -21,3 +22,13 @@ for name, model in models.items():
     cv_scores = cross_val_score(model, X, y, cv=10)
     results[name] = cv_scores
     print(f"{name}: {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
+
+
+plt.figure(figsize=(12,6))
+plt.boxplot(results.values(), tick_labels=results.keys())
+plt.ylabel("Dokładność")
+plt.title("Porównanie modeli - zbiór Digits (10-flod CV)")
+plt.xticks()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
