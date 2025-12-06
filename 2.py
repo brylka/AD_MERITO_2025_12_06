@@ -68,3 +68,22 @@ plt.xlabel('Ważność')
 plt.title('Random Forest - Ważność cech (Irysy)')
 plt.gca().invert_yaxis()
 plt.show()
+
+n_trees_range = [1, 5, 10, 25, 50, 100, 200, 300, 500]
+train_scores = []
+test_scores = []
+oob_scores = []
+
+for n_trees in n_trees_range:
+    rf = RandomForestClassifier(
+        n_estimators=n_trees,
+        oob_score=True,
+        random_state=42,
+        n_jobs=-1
+    )
+    rf.fit(X_train, y_train)
+
+    train_scores.append(rf.score(X_train, y_train))
+    test_scores.append(rf.score(X_test, y_test))
+    oob_scores.append(rf.oob_score_)
+
