@@ -108,3 +108,7 @@ plt.title('Overfittin vs liczba drzew')
 plt.grid(True)
 
 plt.show()
+
+print("Wyniki dla różnej liczby drzew:")
+for i, n in enumerate(n_trees_range):
+    print(f"n={n:3d}, Train={train_scores[i]:.4f}, Test={test_scores[i]:.4f}, OOB={oob_scores[i]:.4f}")
