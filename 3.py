@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 
@@ -50,3 +51,21 @@ print(f"Dokładność treningowa: {rf.score(X_train, y_train):.4f}")
 print(f"Dokładność testowa:    {rf.score(X_test, y_test):.4f}")
 print(f"CV średnia:            {rf_cv.mean():.4f} (+/- {tree_cv.std():.4f})")
 print(f"OOB score:             {rf.oob_score_:.4f}")
+
+y_pred = rf.predict(X_test)
+print(f"Raport klasyfikacji (Random Forest):")
+print(classification_report(y_test, y_pred))
+
+plt.figure(figsize=(10,8))
+cm = confusion_matrix(y_test, y_pred)
+plt.imshow(cm, cmap="Blues")
+plt.title("Macierz pomyłek - Random Forest - zbiór Digits")
+plt.xlabel("Przewidziana cyfra")
+plt.ylabel("Prawdziwa cyfra")
+plt.colorbar()
+plt.xticks(range(10))
+plt.yticks(range(10))
+
+
+plt.tight_layout()
+plt.show()
