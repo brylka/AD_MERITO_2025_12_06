@@ -79,30 +79,30 @@ for name, model in models.items():
     print(
         f"{name:<25} {train_acc:<12.4f} {test_acc:<12.4f} {cv_scores.mean():<12.4f} {cv_scores.std():<10.4f} {train_time:<10.4f}")
 
-# 5. WIZUALIZACJA - BOXPLOT DOKŁADNOŚCI
-plt.figure(figsize=(14, 6))
-plt.boxplot(results.values(), tick_labels=results.keys())
-plt.ylabel('Dokładność')
-plt.title('Porównanie modeli ensemble - zbiór digits (5-fold CV)')
-plt.xticks(rotation=30, ha='right')
-plt.grid(True, axis='y')
-plt.tight_layout()
-plt.show()
-
-# 6. WIZUALIZACJA - CZAS TRENINGU
-plt.figure(figsize=(12, 5))
-colors = ['gray', 'forestgreen', 'forestgreen', 'steelblue', 'steelblue', 'darkorange', 'darkorange']
-plt.bar(times.keys(), times.values(), color=colors)
-plt.ylabel('Czas treningu [s]')
-plt.title('Czas treningu modeli')
-plt.xticks(rotation=30, ha='right')
-plt.tight_layout()
-plt.show()
-
-# 7. PODSUMOWANIE
-print("\n" + "=" * 50)
-print("RANKING WG ŚREDNIEJ DOKŁADNOŚCI CV")
-print("=" * 50)
-ranking = sorted(results.items(), key=lambda x: x[1].mean(), reverse=True)
-for i, (name, scores) in enumerate(ranking, 1):
-    print(f"{i}. {name:<25} {scores.mean():.4f}")
+# # 5. WIZUALIZACJA - BOXPLOT DOKŁADNOŚCI
+# plt.figure(figsize=(14, 6))
+# plt.boxplot(results.values(), tick_labels=results.keys())
+# plt.ylabel('Dokładność')
+# plt.title('Porównanie modeli ensemble - zbiór digits (5-fold CV)')
+# plt.xticks(rotation=30, ha='right')
+# plt.grid(True, axis='y')
+# plt.tight_layout()
+# plt.show()
+#
+# # 6. WIZUALIZACJA - CZAS TRENINGU
+# plt.figure(figsize=(12, 5))
+# colors = ['gray', 'forestgreen', 'forestgreen', 'steelblue', 'steelblue', 'darkorange', 'darkorange']
+# plt.bar(times.keys(), times.values(), color=colors)
+# plt.ylabel('Czas treningu [s]')
+# plt.title('Czas treningu modeli')
+# plt.xticks(rotation=30, ha='right')
+# plt.tight_layout()
+# plt.show()
+#
+# # 7. PODSUMOWANIE
+# print("\n" + "=" * 50)
+# print("RANKING WG ŚREDNIEJ DOKŁADNOŚCI CV")
+# print("=" * 50)
+# ranking = sorted(results.items(), key=lambda x: x[1].mean(), reverse=True)
+# for i, (name, scores) in enumerate(ranking, 1):
+#     print(f"{i}. {name:<25} {scores.mean():.4f}")
