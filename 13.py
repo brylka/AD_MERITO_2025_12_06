@@ -75,14 +75,14 @@ for name, model in models.items():
 # plt.tight_layout()
 # plt.show()
 
-# 6. SZCZEGÓŁOWA ANALIZA NAJLEPSZEGO XGBoost
-best_xgb = models['XGBoost (200, lr=0.05)']
-y_pred = best_xgb.predict(X_test)
-
-print("\n" + "=" * 50)
-print("RAPORT KLASYFIKACJI - XGBoost (200, lr=0.05)")
-print("=" * 50)
-print(classification_report(y_test, y_pred))
+# # 6. SZCZEGÓŁOWA ANALIZA NAJLEPSZEGO XGBoost
+# best_xgb = models['XGBoost (200, lr=0.05)']
+# y_pred = best_xgb.predict(X_test)
+#
+# print("\n" + "=" * 50)
+# print("RAPORT KLASYFIKACJI - XGBoost (200, lr=0.05)")
+# print("=" * 50)
+# print(classification_report(y_test, y_pred))
 
 # # 7. MACIERZ POMYŁEK
 # plt.figure(figsize=(10, 8))
