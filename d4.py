@@ -17,7 +17,7 @@ def index():
         data = (255 - data).reshape(1,-1) / 255
         digit = int(model.predict(data)[0])
 
-    return render_template('d2.html', digit=digit)
+    return render_template('d4.html', digit=digit)
 
 if __name__ == '__main__':
     app.run(debug=True)

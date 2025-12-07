@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rozpoznawanie cyfr</title>
+</head>
+<body>
+<h1>Rozpoznawanie cyfr - model trenowany na zbiorze mnist</h1>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" required>
+    <br>
+    <button type="submit">Rozpoznaj</button>
+</form>
+{% if digit != '' %}
+<p>Rozpoznana cyfra: <b>{{ digit }}</b></p>
+{% endif %}
+</body>
+</html>
