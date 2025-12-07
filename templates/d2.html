@@ -10,5 +10,8 @@
     <br>
     <button type="submit">Rozpoznaj</button>
 </form>
+{% if digit != '' %}
+<p>Rozpoznana cyfra: <b>{{ digit }}</b></p>
+{% endif %}
 </body>
 </html>
